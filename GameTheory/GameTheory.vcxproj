@@ -127,10 +127,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AlwaysBetray.cpp" />
     <ClCompile Include="GameTheory.cpp" />
-    <ClCompile Include="Resentful.cpp" />
-    <ClCompile Include="TitForTat.cpp" />
+    <ClCompile Include="Tournament.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AlwaysBetray.h" />

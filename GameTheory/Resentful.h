@@ -8,7 +8,7 @@ class Resentful : public IStrategy
     
     Choice Decide(const std::vector<Choice>& previousDecisions, const std::vector<Choice>& opponentPreviousDecisions) override
     {
-        if (opponentPreviousDecisions.back == Choice::Betray)
+        if (opponentPreviousDecisions.back() == Choice::Betray)
         {
             opponentBetray = true;
         }

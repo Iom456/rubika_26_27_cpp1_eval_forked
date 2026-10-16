@@ -8,12 +8,15 @@ In this dilemma, two players repeatedly choose between two actions:
 - Cooperate
 - Betray
 Each match consists of exactly 50 rounds. Both players choose their action without knowing the opponent's action for the current round. They may use the history of previous rounds to make their decision. The following table defines the points awarded at each round:
-| **Player A** | **Player B** | **Point A**  | **Point B** |
-|:---|:---|:---:|:---:|
+- 
+- | **Player A** | **Player B** | **Point A**  | **Point B** |
+  |:---|:---|:---:|:---:|
 | Cooperate | Cooperate | 3 | 3 |
 | Cooperate | Betray | 0 | 5 |
 | Betray | Cooperate | 5 | 0 |
 | Betray | Betray | 1 | 1 |
+
+
 At the end of a match:
 - The player with the highest total score wins.
 - If both players have the same score, the match is a draw.
