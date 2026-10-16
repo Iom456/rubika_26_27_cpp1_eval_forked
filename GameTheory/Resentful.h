@@ -3,10 +3,23 @@
 
 class Resentful : public IStrategy
 {
-    Resentful() : IStrategy("AlwaysCooperateStrategy"){}
+    Resentful() : IStrategy("AlwaysCooperateStrategy"), opponentBetray(false){}
     ~Resentful() = default;
     
-    Choice Decide(const std::vector<Choice>& previousDecisions, const std::vector<Choice>& opponentPreviousDecisions) override {return Choice::Cooperate;}
+    Choice Decide(const std::vector<Choice>& previousDecisions, const std::vector<Choice>& opponentPreviousDecisions) override
+    {
+        if (opponentPreviousDecisions.back == Choice::Betray)
+        {
+            opponentBetray = true;
+        }
+        if (!opponentBetray)
+        {
+            return Choice::Cooperate;
+        }
+        return Choice::Betray;
+    }
     
-    std::string Name;    
+    std::string Name;
+private :
+    bool opponentBetray;
 };
