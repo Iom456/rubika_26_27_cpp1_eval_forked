@@ -10,7 +10,5 @@ public:
     
     Choice Decide(const std::vector<Choice>& previousDecisions, const std::vector<Choice>& opponentPreviousDecisions) override {return Choice::Cooperate;}
     
-    std::string Name;
-private:
 };
 

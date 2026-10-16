@@ -19,6 +19,4 @@ public:
             return opponentPreviousDecisions.back();
         }
     }
-    
-    std::string Name;
 };

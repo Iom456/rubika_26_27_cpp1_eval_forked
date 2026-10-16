@@ -10,5 +10,4 @@ public:
     
     Choice Decide(const std::vector<Choice>& previousDecisions, const std::vector<Choice>& opponentPreviousDecisions) override {return Choice::Betray;}
     
-    std::string Name;
 };

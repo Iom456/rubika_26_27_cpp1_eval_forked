@@ -1,25 +1,20 @@
 ﻿#pragma once
 #include "IStrategy.h"
+#include <algorithm>
 
 class Resentful : public IStrategy
 {
-    Resentful() : IStrategy("AlwaysCooperateStrategy"), opponentBetray(false){}
+public:
+    Resentful() : IStrategy("Resentful") {}
     ~Resentful() = default;
-    
-    Choice Decide(const std::vector<Choice>& previousDecisions, const std::vector<Choice>& opponentPreviousDecisions) override
+
+    Choice Decide(const std::vector<Choice>& previousDecisions,
+                  const std::vector<Choice>& opponentPreviousDecisions) override
     {
-        if (opponentPreviousDecisions.back() == Choice::Betray)
-        {
-            opponentBetray = true;
-        }
-        if (!opponentBetray)
-        {
-            return Choice::Cooperate;
-        }
-        return Choice::Betray;
+        const bool opponentEverBetrayed = std::find(opponentPreviousDecisions.begin(),
+                      opponentPreviousDecisions.end(),
+                      Choice::Betray) != opponentPreviousDecisions.end();
+
+        return opponentEverBetrayed ? Choice::Betray : Choice::Cooperate;
     }
-    
-    std::string Name;
-private :
-    bool opponentBetray;
 };

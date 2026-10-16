@@ -135,6 +135,9 @@
     <ClInclude Include="AlwaysCooperateStrategy.h" />
     <ClInclude Include="Choice.h" />
     <ClInclude Include="IStrategy.h" />
+    <ClInclude Include="PavlovStrategy.h" />
+    <ClInclude Include="ProberStartStrategy.h" />
+    <ClInclude Include="RadomStrategy.h" />
     <ClInclude Include="Ranking.h" />
     <ClInclude Include="Resentful.h" />
     <ClInclude Include="TitForTat.h" />

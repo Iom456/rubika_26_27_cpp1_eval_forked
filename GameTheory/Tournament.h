@@ -20,7 +20,7 @@ private:
 	std::vector<std::unique_ptr<IStrategy>> possibleStrategies;
 	std::map<std::unique_ptr<IStrategy>,std::unique_ptr<IStrategy>> matchs;
 	
-	std::map<std::string, Ranking*> results;
+	std::map<std::string, Ranking> results;
 };
 
 

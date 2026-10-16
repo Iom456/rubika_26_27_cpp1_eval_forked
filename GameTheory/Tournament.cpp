@@ -1,8 +1,6 @@
 ﻿#include "Tournament.h"
-
+#include <algorithm>
 #include <iostream>
-#include <ostream>
-
 #include "AlwaysCooperateStrategy.h"
 #include "AlwaysBetray.h"
 #include "TitForTat.h"
@@ -23,7 +21,7 @@ void Tournament::PopulateStrategy()
         strategy_stats.Win = 0;
         strategy_stats.Draw = 0;
         
-        results[strategy_stats.StrategyName] = &strategy_stats;
+        results[strategy_stats.StrategyName] = strategy_stats;
     }
 }
 
@@ -44,8 +42,8 @@ void Tournament::Simulate()
             int player1_score = 0;
             int player2_score  = 0;
 
-            Ranking player1_results = *results[player1_strategy.Name];
-            Ranking player2_results = *results[player2_strategy.Name];
+            Ranking& player1_results = results[player1_strategy.Name];
+            Ranking& player2_results = results[player2_strategy.Name];
             
             for (int round = 0; round < roundsPerMatch; ++round)
             {
@@ -97,13 +95,41 @@ void Tournament::Simulate()
             }
         }
     }
-    
 }
 
 std::vector<Ranking> Tournament::GenerateFinalRankingByPoint() const
 {
+    std::vector<Ranking> ranking;
+    for (const auto& result : results)
+    {
+        ranking.push_back(result.second);
+    }
+
+    std::sort(ranking.begin(), ranking.end(), [](const Ranking& a, const Ranking& b)
+    {
+        if (a.TotalPoint != b.TotalPoint) return a.TotalPoint > b.TotalPoint;
+        if (a.Win != b.Win)               return a.Win > b.Win;
+        if (a.Draw != b.Draw)             return a.Draw > b.Draw;
+        return a.Lose > b.Lose;
+    });
+
+    return ranking;
 }
 
 std::vector<Ranking> Tournament::GenerateFinalRankingByWinDrawLoss() const
 {
+    std::vector<Ranking> ranking;
+    for (const auto& result : results)
+    {
+        ranking.push_back(result.second);
+    }
+
+    std::sort(ranking.begin(), ranking.end(), [](const Ranking& a, const Ranking& b)
+    {
+        if (a.Win != b.Win)   return a.Win > b.Win;
+        if (a.Draw != b.Draw) return a.Draw > b.Draw;
+        return a.Lose > b.Lose;
+    });
+
+    return ranking;
 }
